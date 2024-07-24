@@ -34,6 +34,11 @@ class TestBlackJack(unittest.TestCase):
         hand.add_specific_cards(["A", "5"])
         self.assertEqual(hand.value(), 15)
 
+    def test_all_aces_are_1_with_face_card(self):
+        hand = Hand(["A", "8"])
+        hand.add_specific_cards(["A", "K"])
+        self.assertEqual(hand.value(), 20)
+
 
 #! Really gotta learn to use pytest library
 # * seems less verbose and the use of fixture and mark.parameterize sounds noice!

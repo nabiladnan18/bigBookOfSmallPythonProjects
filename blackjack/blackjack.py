@@ -152,7 +152,7 @@ class Hand:
             else:
                 cards[index] = card
 
-        if face and ace:
+        if face and ace and len(cards) == 2:
             return BLACKJACK
 
         # Check if Aces need to be high ace or low ace.
