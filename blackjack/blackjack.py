@@ -62,24 +62,24 @@ Rules:
 
         # * Deal cards
         betting = True
-        player_cards = Hand([deal_a_card() for i in range(0, 2)])
-        dealer_cards = Hand([deal_a_card() for i in range(0, 2)])
-        player_value = player_cards.value()
-        dealer_value = "???" if betting else dealer_cards.value()
+        player_hand = Hand([deal_a_card() for i in range(0, 2)])
+        dealer_hand = Hand([deal_a_card() for i in range(0, 2)])
+        player_value = player_hand.value()
+        dealer_value = "???" if betting else dealer_hand.value()
 
         # * Hit, Stand, or Double Down
         while betting:
-            dealer_cards.show()
-            player_cards.show()
+            dealer_hand.show()
+            player_hand.show()
             choice = input("(H)it, (S)tand or (D)ouble Down?: ")
             hit, betting = get_decision(choice)
             if hit:
-                player_cards.add_card()
+                player_hand.add_card()
                 print(f"Player: {player_value}")
-                player_cards.show()
+                player_hand.show()
 
                 # TODO: implement function
-                can_player_continue = get_can_continue(player_value)
+                can_player_continue = get_can_continue(player_hand)
 
             if betting:
                 continue
@@ -88,8 +88,8 @@ Rules:
 
         # * Reveal dealer cards
         while dealer_value <= 17:
-            dealer_cards.show(player=False)
-            dealer_cards.add_card()
+            dealer_hand.show(player=False)
+            dealer_hand.add_card()
 
         # TODO: determine who wins
         # * Who wins - player or dealer?
