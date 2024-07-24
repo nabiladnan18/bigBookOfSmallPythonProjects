@@ -177,17 +177,17 @@ def print_dealer_cards(betting_complete, dealer_cards):
 
 def get_decision(choice: str):
     choice = choice.lower()
-    if choice in OPTIONS:
-        if choice == "h":
-            return True, True
-        if choice == "s":
-            return False, False
-        if choice == "d":
-            return True, False
-    else:
-        get_decision(
-            input("Please choose to either: (H)it, (S)tand or (D)ouble Down: ")
-        )
+    while choice not in OPTIONS:
+        choice = input(
+            "Please choose to either: (H)it, (S)tand or (D)ouble Down: "
+        ).lower()
+
+    if choice == "h":
+        return True, True
+    if choice == "s":
+        return False, False
+    if choice == "d":
+        return True, False
 
 
 def deal_a_card():
